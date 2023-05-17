@@ -1,0 +1,8 @@
+inhibitory.receptors = c('CD244','CD160','CTLA4','PDCD1','TIGIT','LAYN','LAG3','HAVCR2')
+costimulatory.molecules = c('TNFRSF18','IGFLR1','TNFRSF4','LGALS9','TNFRSF9','ICOS','CD27','TNFSF14','CD28')
+effector.memory.molecules = c('NKG7','GZMB','GZMH','PRF1','FASLG','GZMA','CD44','GZMM','GZMK','IFNG','IL2','TNF')
+HLA.genes = c('HLA-F','HLA-E','HLA-DMB','HLA-A','HLA-C','HLA-B','HLA-DRA','HLA-DQA1','HLA-DPA1','HLA-DRB1','HLA-DMA','HLA-DPB1','HLA-DQB1','HLA-DOA','HLA-DRB5','HLA-DQA2')
+transcription.factors = c('ID3','HOPX','BTLA','BHLHE40','TOX','CD200','TOX2','PRDM1','BCL6','EOMES','NR4A2','NR4A3','HIF1A','TBX21','ID2','NR4A1','TCF7')
+chemokines = c('CXCL13','CCL3','CXCL12','CCL18','CCL5','CCL21','CXCL16','CCL20','CCL3L1','CCL28','XCL1','CCL4L2','CCL4')
+chemokine.receptors = c('CXCR4','CCR2','CXCR3','CCR6','CXCR5','CCR7','CCR4','CXCR6','CCR5','CCR1')
+integrins = c('ITGB1','ITGA4','ITGA1','ITGAL','ITGB2','ITGAV','ITGAE','ITGA2','ITGB7','ITGA5','ITGA6')
