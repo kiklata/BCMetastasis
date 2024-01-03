@@ -35,10 +35,11 @@ do
     
   bam=$workdir/$Project/count/$sample/outs/*.bam
   res=$workdir/$Project/trust4/$sample
-  
-  run-trust4 -f $vdj --ref $ref_trust -b $bam --barcode CB \
+
+  mkdir $res
+  run-trust4 -f $vdj --ref $ref -b $bam --barcode CB \
              -t 8 \
-             --od $res
+             --od $res -o Trust
              
   velocyto run10x -v -m $rmsk \
     --samtools-threads 8 --samtools-memory 65536 \
