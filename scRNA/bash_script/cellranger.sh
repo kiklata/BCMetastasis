@@ -2,20 +2,20 @@
 
 set -e # Exit immediately if a command exits with a non-zero status
 
-samples=P1015S2
+for i in $(cat ~/bofile);
+do
+  samples=$i
+  datapath=/home/zhepan/Project/scRNA_BC_metastases/Data/SingleCell/public/raw_sc_BC/meta_Bone/$samples
 
-datapath=/home/zhepan/Project/MultiOmics/data/snRNA/$samples/Rawdata/
+  ref=/home/zhepan/Reference/Cellranger
 
-ref=/home/zhepan/Reference/Cellranger
+  cd /home/zhepan/Project/scRNA_BC_metastases/Data/SingleCell/public/raw_sc_BC/meta_Bone/$samples
 
-cd /home/zhepan/Project/MultiOmics/data/snRNA/Result/$samples/cellranger
+  fastq=$datapath
 
-fastq=$datapath/$samples
-
-cellranger count --id=${samples} \
-                 --sample='P1015S2-1','P1015S2-2','P1015S2-3','P1015S2-4','P1015S2-5','P1015S2-6' \
-                 --localcores=16 \
-                 --localmem=180 \
-                 --transcriptome=$ref \
-                 --nosecondary --fastqs=$fastq
-
+  cellranger count --id=${samples} \
+                  --localcores=16 \
+                  --localmem=180 \
+                  --transcriptome=$ref \
+                  --nosecondary --fastqs=$fastq
+done

@@ -1,7 +1,7 @@
 library(SoupX)
 
-paths = paste0('~/Project/scRNA_BC_metastases/Data/SingleCell/inHouse/LungM/',
-               c('LungM1'))
+paths = paste0('~/Project/scRNA_BC_metastases/Data/SingleCell/inHouse/LiverM/',
+               c('LiverM6'))
 
 for (path in paths) {
   

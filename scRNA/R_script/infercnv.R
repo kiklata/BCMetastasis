@@ -1,26 +1,27 @@
 library(infercnv)
 options(scipen = 100)
 
-workdir = '~/Project/MultiOmics/data/snRNA/Object/summary/test'
+workdir = '~/Project/scRNA_BC_metastases/Data/SingleCell/inHouse/BrM'
 
-cellranger_filter <- readRDS("~/Project/MultiOmics/data/snRNA/Object/summary/cellranger_filter_count.rds")
-anno.matrix <- read.delim("~/Project/MultiOmics/data/snRNA/Object/summary/annotation/anno.tsv",sep = '\t',row.names = 1)
+obj <- readRDS("~/Project/scRNA_BC_metastases/Data/SingleCell/inHouse/BrM/BrM_decontx_qc.rds")
+anno <- read.delim("~/Project/scRNA_BC_metastases/Data/SingleCell/inHouse/BrM/BrM_decontx_celltype.csv",sep = ',',row.names = 1)
 
-cellranger_filter = AddMetaData(cellranger_filter,anno.matrix)
-samplelist = c('P1013S2','P1015S2','P1018S1')
+obj = AddMetaData(obj,anno)
+samplelist = c('BrM1','BrM2','BrM3','BrM4')
 
 for(i in samplelist){
   
-seu = subset(cellranger_filter, SampleID == i)
+seu = subset(obj, SampleID == i)
 
-epi_index = colnames(seu)[seu$manual_celltype_annotation == 'Epithelial']
-normal_index = colnames(seu)[!(seu$manual_celltype_annotation %in% c('Epithelial','PVL','CAF'))] %>% sample(.,length(epi_index))
+epi_index = colnames(seu)[seu$cl_major == 'Epi']
+
+normal_index = colnames(seu)[!(seu$cl_major %in% c('Epi','Fb'))]
 
 # ref: A single-cell and spatially resolved atlas of human breast cancers
 count = as.matrix(subset(seu, cells = c(epi_index,normal_index))[['RNA']]@counts)
 
-anno_file = anno.matrix[c(epi_index,normal_index),'manual_celltype_annotation'] %>% as.data.frame(.,row.name = c(epi_index,normal_index))
-ref_group = setdiff(names(table(anno_file[1])),'Epithelial')
+anno_file = anno[c(epi_index,normal_index),'cl_major'] %>% as.data.frame(.,row.name = c(epi_index,normal_index))
+ref_group = setdiff(names(table(anno_file[1])),'Epi')
   
 if(dir.exists(file.path(workdir,'cnv', i))==F){ 
   dir.create(file.path(workdir,'cnv', i), recursive = T )}
@@ -36,8 +37,7 @@ infercnv_obj = infercnv::run(infercnv_obj,
                              cluster_by_groups=F,   # cluster
                              denoise=T,
                              analysis_mode="subclusters",
-                             tumor_subcluster_partition_method='random_trees',
-                             HMM=T,write_phylo = TRUE,
+                             HMM=T,
                              num_threads = 8
 )
 }

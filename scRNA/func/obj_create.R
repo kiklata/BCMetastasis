@@ -38,7 +38,7 @@ obj_create = function(type,
     cellbender_path = file.path(
       datapath,
       SampleID,
-      'cellbender_feature_bc_matrix_filtered.h5'
+      'cellbender_filtered.h5'
     )
     
     if (type == 'cellranger') {
