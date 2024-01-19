@@ -49,6 +49,6 @@ for sample in sample_list:
     for selected_K in K:
         cnmf_obj.consensus(k=selected_K, density_threshold=density_threshold, show_clustering=True, close_clustergram_fig=False)
     
-    content = 'Finished '+ path+' '+site+ ' '+sample
-    with open('/home/zhepan/nmf_log.txt', 'w') as file:
-    file.write(content)
+    content = 'Finished '+ path+'/'+site+ '/'+sample+'/count.txt\n'
+    with open('/home/zhepan/nmf_log.txt', 'a') as file:
+      file.write(content)

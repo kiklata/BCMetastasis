@@ -1,4 +1,4 @@
-path = '~/Project/scRNA_BC_metastases/Data/SingleCell/public/BrM/science/'
+path = '~/Project/scRNA_BC_metastases/Data/SingleCell/public/LymphM/oncogenesis/'
 
 seu <- readRDS(paste0(path,'LungM_decontx_qc.rds'))
 meta = read.delim(paste0(path,'LungM_decontx_celltype.csv'),sep = ',',row.names = 1)
