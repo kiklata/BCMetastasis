@@ -7,7 +7,7 @@ script_path=/home/zhepan/Project/scRNA_BC_metastases/Analysis/scRNA/py_script
 
 #python $script_path/nmf.py --path $pub --site BoM --sample_list BoM1 BoM2
 
-#python $script_path/nmf.py --path $pub/BrM --site science --sample_list BrM1 BrM2 BrM3
+#python $script_path/nmf.py --path $pub/BrM --site science --sample_list BrM1 BrM2 BrM3 BrM4
 #python $script_path/nmf.py --path $pub/BrM --site cell --sample_list BrM1 BrM2 BrM3
 #python $script_path/nmf.py --path $pub --site BrM --sample_list GSE143423
 #python $script_path/nmf.py --path $pub --site BrM --sample_list GSE202501

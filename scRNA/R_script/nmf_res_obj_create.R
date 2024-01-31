@@ -1,6 +1,6 @@
 
 
-all_path = read.delim('/home/zhepan/nmf_cell_number.txt', sep = ' ')
+all_path = read.delim('/home/zhepan/Project/scRNA_BC_metastases/Result/nmf/tumor/nmf_cell_number.txt', sep = ' ')
 
 all_nmf_gene_score = list()
 
@@ -10,21 +10,21 @@ for (i in 1:nrow(all_path)) {
   source = all_path[i, 'source']
   
   hvg = read.delim(
-    paste0(nmf_path, '/cNMF.overdispersed_genes.txt'),
+    paste0(nmf_path, '/cNMF/cNMF','.overdispersed_genes.txt'),
     sep = '\t',
     header = F
   )
   
-  threshold = '2_0' # 2_0 0_02
+  threshold = '0_02' # 2_0 0_02
   
-  k_range = seq(3, 9)
+  k_range = seq(4, 10)
   
   hvg_score_list = list()
   
   for (k in k_range) {
     gene_score = read.delim(file.path(
       nmf_path,
-      paste0('cNMF.gene_spectra_score.k_', k, '.dt_', threshold, '.txt')
+      paste0('/cNMF/cNMF','.gene_spectra_score.k_', k, '.dt_', threshold, '.txt')
     ), sep = '\t')
     gene_score$X = paste(sample,
                          'k',
@@ -48,4 +48,4 @@ for (i in 1:nrow(all_path)) {
   print(sample)
 }
 
-saveRDS(all_nmf_gene_score, file = '/home/zhepan/nmf_gene_score_2_0.rds')
+saveRDS(all_nmf_gene_score, file = '/home/zhepan/Project/scRNA_BC_metastases/Result/nmf/tumor/cNMF_gene_score_0_02.rds')
